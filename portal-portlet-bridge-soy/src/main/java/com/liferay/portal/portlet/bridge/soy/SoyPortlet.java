@@ -185,6 +185,10 @@ public class SoyPortlet extends MVCPortlet {
 	protected void propagateRequestParameters(PortletRequest portletRequest)
 		throws PortletException {
 
+		Template template = getTemplate(portletRequest);
+
+		SoyContext soyContext = new SoyContext();
+
 		Map<String, Object> soyContextParametersMap = new HashMap<>();
 
 		Map<String, String[]> parametersMap = portletRequest.getParameterMap();
@@ -201,11 +205,7 @@ public class SoyPortlet extends MVCPortlet {
 			}
 		}
 
-		SoyContext soyContext = new SoyContext();
-
 		soyContext.putInjectedData("requestParams", soyContextParametersMap);
-
-		Template template = getTemplate(portletRequest);
 
 		template.putAll(soyContext);
 	}
