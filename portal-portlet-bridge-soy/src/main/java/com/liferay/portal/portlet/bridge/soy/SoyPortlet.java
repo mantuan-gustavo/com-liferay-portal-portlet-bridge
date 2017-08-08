@@ -81,7 +81,7 @@ public class SoyPortlet extends MVCPortlet {
 			RenderRequest renderRequest, RenderResponse renderResponse)
 		throws IOException, PortletException {
 
-		if (!_isRequestTemplateCreated(renderRequest)) {
+		if (!_hasExistingRequestTemplate(renderRequest)) {
 			try {
 				_createRequestTemplate(renderRequest);
 			}
@@ -117,7 +117,7 @@ public class SoyPortlet extends MVCPortlet {
 	protected Template getTemplate(PortletRequest portletRequest)
 		throws PortletException {
 
-		if (_isRequestTemplateCreated(portletRequest)) {
+		if (_hasExistingRequestTemplate(portletRequest)) {
 			return (Template)portletRequest.getAttribute(WebKeys.TEMPLATE);
 		}
 
@@ -249,7 +249,7 @@ public class SoyPortlet extends MVCPortlet {
 		return _templateResources;
 	}
 
-	private boolean _isRequestTemplateCreated(PortletRequest portletRequest) {
+	private boolean _hasExistingRequestTemplate(PortletRequest portletRequest) {
 		Template template = (Template)portletRequest.getAttribute(
 			WebKeys.TEMPLATE);
 
