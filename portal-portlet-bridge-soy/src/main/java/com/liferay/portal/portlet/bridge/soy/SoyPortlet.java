@@ -81,7 +81,10 @@ public class SoyPortlet extends MVCPortlet {
 			RenderRequest renderRequest, RenderResponse renderResponse)
 		throws IOException, PortletException {
 
-		if (!_hasExistingRequestTemplate(renderRequest)) {
+		Template template = (Template)renderRequest.getAttribute(
+			WebKeys.TEMPLATE);
+
+		if (template == null) {
 			try {
 				_createRequestTemplate(renderRequest);
 			}
@@ -117,7 +120,10 @@ public class SoyPortlet extends MVCPortlet {
 	protected Template getTemplate(PortletRequest portletRequest)
 		throws PortletException {
 
-		if (_hasExistingRequestTemplate(portletRequest)) {
+		Template template = (Template)portletRequest.getAttribute(
+			WebKeys.TEMPLATE);
+
+		if (template != null) {
 			return (Template)portletRequest.getAttribute(WebKeys.TEMPLATE);
 		}
 
@@ -247,17 +253,6 @@ public class SoyPortlet extends MVCPortlet {
 		}
 
 		return _templateResources;
-	}
-
-	private boolean _hasExistingRequestTemplate(PortletRequest portletRequest) {
-		Template template = (Template)portletRequest.getAttribute(
-			WebKeys.TEMPLATE);
-
-		if (template != null) {
-			return true;
-		}
-
-		return false;
 	}
 
 	private void _writePortletJavaScript(
