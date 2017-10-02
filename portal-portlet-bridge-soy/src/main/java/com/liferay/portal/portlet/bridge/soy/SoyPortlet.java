@@ -514,6 +514,8 @@ public class SoyPortlet extends MVCPortlet {
 			sessionErrors.put(key, SessionErrors.get(portletRequest, key));
 		}
 
+		soyContext.putInjectedData("sessionErrors", sessionErrors);
+
 		Map<String, Object> sessionMessages = new HashMap<>();
 
 		for (String key : SessionMessages.keySet(portletRequest)) {
