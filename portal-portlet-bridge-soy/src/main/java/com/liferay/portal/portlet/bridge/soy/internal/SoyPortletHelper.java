@@ -39,6 +39,7 @@ public class SoyPortletHelper {
 
 	public SoyPortletHelper(Bundle bundle) throws Exception {
 		_bundle = bundle;
+
 		_moduleName = getModuleName();
 		_soyJavaScriptRenderer = new SoyJavaScriptRenderer();
 	}
