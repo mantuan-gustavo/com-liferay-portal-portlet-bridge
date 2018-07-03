@@ -218,7 +218,7 @@ public class SoyPortlet extends MVCPortlet {
 	protected boolean propagateRequestParameters;
 
 	/**
-	 * @deprecated As of Judson, use {@link
+	 * @deprecated As of Judson (7.1.x), use {@link
 	 *             SoyPortlet#getTemplate(PortletRequest)}} instead
 	 */
 	@Deprecated
