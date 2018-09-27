@@ -25,6 +25,7 @@ import com.liferay.portal.kernel.template.TemplateConstants;
 import com.liferay.portal.kernel.template.TemplateException;
 import com.liferay.portal.kernel.template.TemplateManagerUtil;
 import com.liferay.portal.kernel.template.TemplateResource;
+import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.StringBundler;
@@ -154,6 +155,12 @@ public class SoyPortlet extends MVCPortlet {
 			template.put(
 				TemplateConstants.NAMESPACE,
 				_soyPortletHelper.getTemplateNamespace(path));
+
+			ThemeDisplay themeDisplay =
+				(ThemeDisplay)portletRequest.getAttribute(
+					WebKeys.THEME_DISPLAY);
+
+			template.put("locale", themeDisplay.getLocale());
 
 			if (propagateRequestParameters) {
 				propagateRequestParameters(portletRequest);
