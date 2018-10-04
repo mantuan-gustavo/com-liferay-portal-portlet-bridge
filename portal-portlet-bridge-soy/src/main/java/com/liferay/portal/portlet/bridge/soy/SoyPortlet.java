@@ -257,7 +257,7 @@ public class SoyPortlet extends MVCPortlet {
 			return _templateResources;
 		}
 
-		_templateResources =
+		List<TemplateResource> templateResources =
 			SoyTemplateResourcesProvider.getBundleTemplateResources(
 				_bundle, templatePath);
 
@@ -272,8 +272,10 @@ public class SoyPortlet extends MVCPortlet {
 				SoyTemplateResourcesProvider.getBundleTemplateResources(
 					bundle, templatePath);
 
-			_templateResources.addAll(mvcCommandTemplateResources);
+			templateResources.addAll(mvcCommandTemplateResources);
 		}
+
+		_templateResources = templateResources;
 
 		return _templateResources;
 	}
